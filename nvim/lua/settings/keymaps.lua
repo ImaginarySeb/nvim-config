@@ -67,5 +67,27 @@ keymap.set("n", "<a-f>", ":FzfLua files<cr>", opts)
 
 -- rust --
 keymap.set("n", "<F2>", ":FloatermNew --autoclose=0 cargo run<cr>", { silent = true, noremap = true})
-keymap.set("n", "<leader>cc", ":FloatermNew --autoclose=0 cargo check<cr>", { silent = true, noremap = true})
+keymap.set("n", "<leader>rc", ":FloatermNew --autoclose=0 cargo check<cr>", { silent = true, noremap = true})
 
+-- C --
+-- keymap.set("n", "<leader>c", function ()
+--     local file = vim.fn.expand("%")
+--     local output = vim.fn.expand("%:r")
+--     local cmd = "clang " .. file .. " -o " .. output .. " && ./" ..output
+--     vim.cmd("FloatermNew --autoclose=0 " .. cmd)
+-- end)
+-- keymap.set("n", "<leader>c", function ()
+--     vim.cmd("write")
+--
+--     local file = vim.fn.expand("%:p")
+--     local cwd = vim.fn.getcwd()
+--     local output = vim.fn.fnamemodify(cwd, ":t")
+--
+--     local cmd = "clang " .. file .. " -o " .. output .. " && ./" ..output
+--
+--     vim.cmd("FloatermNew --autoclose=0 " .. cmd)
+-- end)
+keymap.set("n", "<leader>c", function ()
+    local file = vim.fn.expand("%")
+    vim.cmd("FloatermNew --autoclose=0 clang " .. file .. " && ./a.out")
+end, opts)
